@@ -48,18 +48,37 @@
                                     <td><?= $row['email'] ?></td>
                                     <td><?= $row['phone'] ?></td>
                                     <td><?= $row['real_name'] ?></td>
-                                    <td><?php echo $row['status'] == 1 ? '激活' : '失效'; ?></td>
+                                    <td><?php echo $row['status'] == 1 ? '激活' : '禁用'; ?></td>
                                     <td><?= $row['rolename'] ?></td>
                                     <td>
                                         <a href="#" class="btn btn-info btn-xs m-r-5 fa fa-edit">编辑</a>
+                                        <a href="#" class="btn btn-danger btn-xs m-r-5 fa fa-times" data-id="<?=$row['user_id']?>">删除</a>
                                         <?php if ($this->session->userdata['userId'] != $row['user_id']) { ?>
-                                            <a href="#" class="btn btn-danger btn-xs m-r-5 fa fa-times">删除</a>
+                                            <a href="#" class="btn btn-danger btn-xs m-r-5 fa fa-times" data-id="<?=$row['user_id']?>">删除</a>
                                         <?php } ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                </div>
+                <!-- #modal-dialog -->
+                <div class="modal fade" id="modal-dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title">提示</h4>
+                            </div>
+                            <div class="modal-body">
+                                您确认要禁用此用户么？
+                            </div>
+                            <div class="modal-footer">
+                                <a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">否</a>
+                                <a href="javascript:;" class="btn btn-sm btn-success" id="modal_submit">是</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -81,5 +100,12 @@
     $(document).ready(function () {
         App.init();
         TableManageAutofill.init();
+    });
+    
+    $('.btn-danger').click(function(){
+        var id = $(this).attr('data-id');
+        var delUrl = '<?php echo site_url('backend/admin/delUser');?>/' + id;
+        $('#modal_submit').attr('href', delUrl);
+        $("#modal-dialog").modal();
     });
 </script>

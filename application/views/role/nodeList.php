@@ -46,7 +46,7 @@
                                     <td><?php echo $row['status'] == 1 ? '正常' : '停用'; ?></td>
                                     <td>
                                         <a href="#" class="btn btn-info btn-xs m-r-5 fa fa-edit">编辑</a>
-                                        <a href="#modal-dialog" class="btn btn-danger btn-xs m-r-5 fa fa-times" data-toggle="modal">删除</a>
+                                        <a href="javascript:;" class="btn btn-danger btn-xs m-r-5 fa fa-times" data-toggle="modal" data-id="<?=$row['id']?>">删除</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -54,7 +54,7 @@
                     </table>
                 </div>
                 <!-- #modal-dialog -->
-                <div class="modal fade" id="modal-dialog" style="display: none;">
+                <div class="modal fade" id="modal-dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -62,11 +62,11 @@
                                 <h4 class="modal-title">提示</h4>
                             </div>
                             <div class="modal-body">
-                                您确认要删除此节点么？
+                                您确认要禁用此节点么？
                             </div>
                             <div class="modal-footer">
                                 <a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">否</a>
-                                <a href="javascript:;" class="btn btn-sm btn-success">是</a>
+                                <a href="javascript:;" class="btn btn-sm btn-success" id="modal_submit">是</a>
                             </div>
                         </div>
                     </div>
@@ -91,5 +91,12 @@
     $(document).ready(function () {
         App.init();
         TableManageAutofill.init();
+    });
+    
+    $('.btn-danger').click(function(){
+        var id = $(this).attr('data-id');
+        var delUrl = '<?php echo site_url('backend/role/delNode');?>/' + id;
+        $('#modal_submit').attr('href', delUrl);
+        $("#modal-dialog").modal();
     });
 </script>

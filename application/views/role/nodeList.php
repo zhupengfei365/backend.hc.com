@@ -46,7 +46,7 @@
                                     <td><?php echo $row['status'] == 1 ? '正常' : '停用'; ?></td>
                                     <td>
                                         <a href="#" class="btn btn-info btn-xs m-r-5 fa fa-edit">编辑</a>
-                                        <a href="#" class="btn btn-danger btn-xs m-r-5 fa fa-times" data-toggle="modal">删除</a>
+                                        <a href="#modal-dialog" class="btn btn-danger btn-xs m-r-5 fa fa-times" data-toggle="modal">删除</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

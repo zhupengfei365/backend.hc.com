@@ -24,6 +24,12 @@ class AdminMenu extends CI_Model {
         return $adminUserRet;
     }
     
+    public function getChildMenuByPid($pidStr) {
+        $this->load->model('backend/dao/AdminMenuDao');
+        $menuList = $this->AdminMenuDao->getChildMenuWithDel($pidStr);
+        return $menuList;
+    }
+    
     public function getParentMenu() {
         $this->load->model('backend/dao/AdminMenuDao');
         $menuList = $this->AdminMenuDao->getParentMenu();
@@ -34,5 +40,29 @@ class AdminMenu extends CI_Model {
         $this->load->model('backend/dao/AdminMenuDao');
         $menuList = $this->AdminMenuDao->getChildMenu($pidStr);
         return $menuList;
+    }
+    
+    public function getMenuInfo($id) {
+        $this->load->model('backend/dao/AdminMenuDao');
+        $menuInfo = $this->AdminMenuDao->getMenuInfo($id);
+        return $menuInfo;
+    }
+    
+    public function editMenuInfo($id, $data) {
+        if (empty($id) || empty($data)) {
+            return false;
+        }
+        $this->load->model('backend/dao/AdminMenuDao');
+        $result = $this->AdminMenuDao->editMenuInfo($id, $data);
+        return $result;
+    }
+    
+    public function addMenuToDb($data) {
+        if (empty($data)) {
+            return FALSE;
+        }
+        $this->load->model('backend/dao/AdminMenuDao');
+        $result = $this->AdminMenuDao->insertMenuData($data);
+        return $result;
     }
 }

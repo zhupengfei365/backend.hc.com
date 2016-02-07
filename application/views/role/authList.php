@@ -24,7 +24,7 @@
                 </div>
                 <h4 class="panel-title">授权节点</h4>
             </div>
-            <div class="panel-body panel-form">
+            <div class="panel-body">
                 <form class="form-horizontal form-bordered" data-parsley-validate="true" name="demo-form" action="<?php echo site_url('backend/role/editAuthDo'); ?>" method="post">
                     <div class="table-responsive">
                         <table class="table table-bordered">
@@ -58,9 +58,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="form-group">
-                        <!--<label class="control-label col-md-4 col-sm-4"></label>-->
-                        <div class="col-md-6 col-sm-6">
+                    <div>
+                        <div class="col-md-12 col-sm-12">
                             <input type="hidden" name="role_id" value="<?=$role_id?>">
                             <button type="submit" class="btn btn-primary">提交</button>
                         </div>

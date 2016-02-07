@@ -2,11 +2,11 @@
 <ol class="breadcrumb pull-right">
     <li><a href="javascript:;">首页</a></li>
     <li><a href="javascript:;">权限管理</a></li>
-    <li class="active">添加节点</li>
+    <li class="active">修改节点</li>
 </ol>
 <!-- end breadcrumb -->
 <!-- begin page-header -->
-<h1 class="page-header">添加节点<small></small></h1>
+<h1 class="page-header">修改节点<small></small></h1>
 <!-- end page-header -->
 
 <!-- begin row -->
@@ -22,7 +22,7 @@
                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                 </div>
-                <h4 class="panel-title">添加节点</h4>
+                <h4 class="panel-title">修改节点</h4>
             </div>
             <div class="panel-body panel-form">
                 <form class="form-horizontal form-bordered" data-parsley-validate="true" name="demo-form" action="<?php echo site_url('backend/role/editNodeDo') . '/' . $id;?>" method="post">

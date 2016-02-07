@@ -29,6 +29,9 @@ class AdminRole extends CI_Model {
     }
     
     public function addNodeToDb($data) {
+        if (empty($data)) {
+            return FALSE;
+        }
         $this->load->model('backend/dao/AdminRoleDao');
         $result = $this->AdminRoleDao->insertNodeData($data);
         return $result;

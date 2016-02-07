@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Menu extends MY_Controller {
 
-    public function index() {
+    public function menuList() {
         $list = $this->getMenuList();
         $data['list'] = $list;
         $this->load->view('manage/menu', $data);

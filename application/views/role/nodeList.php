@@ -22,10 +22,10 @@
                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                 </div>
-                <h4 class="panel-title">Data Table - Default</h4>
+                <h4 class="panel-title">节点列表</h4>
             </div>
             <div class="panel-body">
-                <a href="#" class="btn btn-primary m-r-5 m-b-5 fa fa-plus">新增节点</a>
+                <a href="<?php echo site_url('backend/role/addNode');?>" class="btn btn-primary m-r-5 m-b-5 fa fa-plus">新增节点</a>
                 <div class="table-responsive">
                     <table id="data-table" class="table table-striped table-bordered">
                         <thead>
@@ -45,8 +45,10 @@
                                     <td><?= $row['memo'] ?></td>
                                     <td><?php echo $row['status'] == 1 ? '正常' : '停用'; ?></td>
                                     <td>
-                                        <a href="#" class="btn btn-info btn-xs m-r-5 fa fa-edit">编辑</a>
+                                        <a href="<?php echo site_url('backend/role/editNode') . '/' . $row['id'];?>" class="btn btn-info btn-xs m-r-5 fa fa-edit">编辑</a>
+                                        <?php if ($row['status'] == 1) {?>
                                         <a href="javascript:;" class="btn btn-danger btn-xs m-r-5 fa fa-times" data-toggle="modal" data-id="<?=$row['id']?>">删除</a>
+                                        <?php }?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -84,12 +86,10 @@
 <script src="<?php echo base_url() . APPPATH ?>views/static/color_admin/admin/assets/plugins/DataTables/js/dataTables.autoFill.js"></script>
 <script src="<?php echo base_url() . APPPATH ?>views/static/color_admin/admin/assets/plugins/gritter/js/jquery.gritter.js"></script>
 <script src="<?php echo base_url() . APPPATH ?>views/static/color_admin/admin/assets/js/table-manage-autofill.demo.min.js"></script>
-<script src="<?php echo base_url() . APPPATH ?>views/static/color_admin/admin/assets/js/apps.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 <script>
     $(document).ready(function () {
-        App.init();
         TableManageAutofill.init();
     });
     

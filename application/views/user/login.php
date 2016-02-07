@@ -52,10 +52,10 @@
             <div class="login-content">
                 <form action="<?php echo site_url('backend/user/dologin');?>" method="POST" class="margin-bottom-0">
                     <div class="form-group m-b-20">
-                        <input type="text" name="username" class="form-control input-lg" placeholder="Email Address" required autofocus/>
+                        <input type="text" name="username" class="form-control input-lg" placeholder="Username" required autofocus/>
                     </div>
                     <div class="form-group m-b-20">
-                        <input type="text" name="password" class="form-control input-lg" placeholder="Password" required/>
+                        <input type="password" name="password" class="form-control input-lg" placeholder="Password" required/>
                     </div>
                     <div class="checkbox m-b-20">
                         <label>

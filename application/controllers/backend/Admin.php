@@ -13,5 +13,16 @@ class Admin extends MY_Controller {
         $this->load->view('admin/userList', $data);
     }
 
+    public function addUser() {
+        $this->load->view('admin/addUser');
+    }
+    
+    public function addUserDo() {
+        
+    }
 
+    public function editUser() {
+        
+    }
+    
 }

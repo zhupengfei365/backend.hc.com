@@ -81,6 +81,16 @@
 </div>
 <!-- end page container -->
 
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script src="<?php echo base_url() . APPPATH ?>views/static/color_admin/admin/assets/js/apps.min.js"></script>
+<!-- ================== END PAGE LEVEL JS ================== -->
+
+<script>
+    $(document).ready(function () {
+        App.init();
+    });
+</script>
+
 <script>
     (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;

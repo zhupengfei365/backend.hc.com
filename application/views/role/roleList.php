@@ -1,12 +1,12 @@
 <!-- begin breadcrumb -->
 <ol class="breadcrumb pull-right">
     <li><a href="javascript:;">首页</a></li>
-    <li><a href="javascript:;">用户管理</a></li>
-    <li class="active">用户列表</li>
+    <li><a href="javascript:;">权限管理</a></li>
+    <li class="active">角色列表</li>
 </ol>
 <!-- end breadcrumb -->
 <!-- begin page-header -->
-<h1 class="page-header">用户列表<small></small></h1>
+<h1 class="page-header">角色列表<small></small></h1>
 <!-- end page-header -->
 
 <!-- begin row -->
@@ -22,21 +22,17 @@
                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                 </div>
-                <h4 class="panel-title">用户列表</h4>
+                <h4 class="panel-title">角色列表</h4>
             </div>
             <div class="panel-body">
-                <a href="#" class="btn btn-primary m-r-5 m-b-5 fa fa-plus">新增用户</a>
+                <a href="<?php echo site_url('backend/role/addRole');?>" class="btn btn-primary m-r-5 m-b-5 fa fa-plus">新增角色</a>
                 <div class="table-responsive">
                     <table id="data-table" class="table table-striped table-bordered">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>用户名</th>
-                                <th>邮箱</th>
-                                <th>手机号</th>
-                                <th>姓名</th>
-                                <th>用户状态</th>
-                                <th>用户组</th>
+                                <th>角色</th>
+                                <th>角色状态</th>
                                 <th>操作</th>
                             </tr>
                         </thead>
@@ -44,17 +40,14 @@
                             <?php foreach ($list as $k => $row): ?>
                                 <tr class="odd gradeX">
                                     <td><?= $k + 1 ?></td>
-                                    <td><?= $row['user_name'] ?></td>
-                                    <td><?= $row['email'] ?></td>
-                                    <td><?= $row['phone'] ?></td>
-                                    <td><?= $row['real_name'] ?></td>
-                                    <td><?php echo $row['status'] == 1 ? '激活' : '禁用'; ?></td>
                                     <td><?= $row['rolename'] ?></td>
+                                    <td><?php echo $row['status'] == 1 ? '正常' : '禁用'; ?></td>
                                     <td>
-                                        <a href="#" class="btn btn-info btn-xs m-r-5 fa fa-edit">编辑</a>
-                                        <?php if ($this->session->userdata['userId'] != $row['user_id'] && $row['status'] == 1) { ?>
-                                            <a href="#" class="btn btn-danger btn-xs m-r-5 fa fa-times" data-id="<?=$row['user_id']?>">删除</a>
-                                        <?php } ?>
+                                        <a href="<?php echo site_url('backend/role/authList') . '/' . $row['id'];?>" class="btn btn-success btn-xs m-r-5 fa fa-check-square-o">赋权节点</a>
+                                        <a href="<?php echo site_url('backend/role/editRole') . '/' . $row['id'];?>" class="btn btn-info btn-xs m-r-5 fa fa-edit">编辑角色</a>
+                                        <?php if ($row['status'] == 1) {?>
+                                        <a href="javascript:;" class="btn btn-danger btn-xs m-r-5 fa fa-times" data-toggle="modal" data-id="<?=$row['id']?>">删除角色</a>
+                                        <?php }?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -70,7 +63,7 @@
                                 <h4 class="modal-title">提示</h4>
                             </div>
                             <div class="modal-body">
-                                您确认要禁用此用户么？
+                                您确认要禁用此角色么？
                             </div>
                             <div class="modal-footer">
                                 <a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">否</a>
@@ -101,7 +94,7 @@
     
     $('.btn-danger').click(function(){
         var id = $(this).attr('data-id');
-        var delUrl = '<?php echo site_url('backend/admin/delUser');?>/' + id;
+        var delUrl = '<?php echo site_url('backend/role/delRole');?>/' + id;
         $('#modal_submit').attr('href', delUrl);
         $("#modal-dialog").modal();
     });

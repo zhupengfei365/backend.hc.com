@@ -82,5 +82,32 @@ class AdminUserDao extends CommonDao {
         }
         return $ret;
     }
+    
+    public function insertUserData($data) {
+        $this->getConn();
+        $res = $this->insertOneRecord($data);
+        return $res;
+    }
 
+    public function getUserInfo($id) {
+        $this->getConn();
+        $this->commonDb->select('*');
+        $this->commonDb->from($this->table);
+        $this->commonDb->where('user_id', $id);
+        $query = $this->commonDb->get();
+        if (!$query) {
+            // 数据库执行出错，记录日志
+            $ret = array();
+        } else if ($query->num_rows() > 0) {
+            $ret = $query->row_array();
+        } else {
+            $ret = array();
+        }
+        return $ret;
+    }
+    
+    public function editUserInfo($userId, $data) {
+        $this->getConn();
+        return $this->updateOneRecord($userId, $data);
+    }
 }

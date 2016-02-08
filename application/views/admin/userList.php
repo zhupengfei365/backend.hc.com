@@ -25,7 +25,7 @@
                 <h4 class="panel-title">用户列表</h4>
             </div>
             <div class="panel-body">
-                <a href="#" class="btn btn-primary m-r-5 m-b-5 fa fa-plus">新增用户</a>
+                <a href="<?php echo site_url('backend/admin/addUser');?>" class="btn btn-primary m-r-5 m-b-5 fa fa-plus">新增用户</a>
                 <div class="table-responsive">
                     <table id="data-table" class="table table-striped table-bordered">
                         <thead>
@@ -51,7 +51,7 @@
                                     <td><?php echo $row['status'] == 1 ? '激活' : '禁用'; ?></td>
                                     <td><?= $row['rolename'] ?></td>
                                     <td>
-                                        <a href="#" class="btn btn-info btn-xs m-r-5 fa fa-edit">编辑</a>
+                                        <a href="<?php echo site_url('backend/admin/editUser') . '/' . $row['user_id'] ;?>" class="btn btn-info btn-xs m-r-5 fa fa-edit">编辑</a>
                                         <?php if ($this->session->userdata['userId'] != $row['user_id'] && $row['status'] == 1) { ?>
                                             <a href="#" class="btn btn-danger btn-xs m-r-5 fa fa-times" data-id="<?=$row['user_id']?>">删除</a>
                                         <?php } ?>

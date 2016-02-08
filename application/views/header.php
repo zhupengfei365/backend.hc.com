@@ -113,12 +113,12 @@
 						</a>
 						<ul class="dropdown-menu animated fadeInLeft">
 							<li class="arrow"></li>
-							<li><a href="javascript:;">Edit Profile</a></li>
-							<li><a href="javascript:;"><span class="badge badge-danger pull-right">2</span> Inbox</a></li>
-							<li><a href="javascript:;">Calendar</a></li>
+                            <li><a href="<?php echo site_url('backend/admin/editInfo');?>">个人设置</a></li>
+							<!--<li><a href="javascript:;"><span class="badge badge-danger pull-right">2</span> Inbox</a></li>-->
+							<li><a href="<?php echo site_url('backend/admin/editPass');?>">修改密码</a></li>
 							<li><a href="javascript:;">Setting</a></li>
 							<li class="divider"></li>
-							<li><a href="<?php echo site_url('backend/user/logout'); ?>">Log Out</a></li>
+							<li><a href="<?php echo site_url('backend/user/logout'); ?>">退出账号</a></li>
 						</ul>
 					</li>
 				</ul>

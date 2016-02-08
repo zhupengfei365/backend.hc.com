@@ -5,12 +5,12 @@
 <!-- begin breadcrumb -->
 <ol class="breadcrumb pull-right">
     <li><a href="javascript:;">首页</a></li>
-    <li><a href="javascript:;">权限管理</a></li>
-    <li class="active">添加导航</li>
+    <li><a href="javascript:;">用户管理</a></li>
+    <li class="active">编辑用户</li>
 </ol>
 <!-- end breadcrumb -->
 <!-- begin page-header -->
-<h1 class="page-header">添加导航<small></small></h1>
+<h1 class="page-header">编辑用户<small></small></h1>
 <!-- end page-header -->
 
 <!-- begin row -->
@@ -26,69 +26,76 @@
                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                 </div>
-                <h4 class="panel-title">添加导航</h4>
+                <h4 class="panel-title">编辑用户</h4>
             </div>
             <div class="panel-body panel-form">
-                <form class="form-horizontal form-bordered" data-parsley-validate="true" name="demo-form" action="<?php echo site_url('backend/menu/addMenuDo');?>" method="post">
-                    <?php if($pid != 0) {?>
+                <form class="form-horizontal form-bordered" data-parsley-validate="true" name="demo-form" action="<?php echo site_url('backend/admin/editUserDo');?>" method="post">
                     <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4" for="p_id">父级导航 * :</label>
+                        <label class="control-label col-md-4 col-sm-4" for="username">用户名 * :</label>
+                        <div class="col-md-6 col-sm-6">
+                            <input class="form-control" type="text" id="user_name" name="user_name" value="<?=$data['user_name']?>" placeholder="必填" data-parsley-required="true" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4 col-sm-4" for="passport">密码 * :</label>
+                        <div class="col-md-6 col-sm-6">
+                            <input class="form-control" type="text" id="password" name="password" value="" data-parsley-type="" placeholder="******" data-parsley-required="true"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4 col-sm-4" for="email">邮箱 * :</label>
+                        <div class="col-md-6 col-sm-6">
+                            <input class="form-control" type="email" id="email" name="email" value="<?=$data['email']?>" data-parsley-type="" placeholder="必填" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4 col-sm-4" for="phone">手机号 * :</label>
+                        <div class="col-md-6 col-sm-6">
+                            <input class="form-control" type="tel" id="phone" name="phone" value="<?=$data['phone']?>" data-parsley-type="" placeholder="必填" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4 col-sm-4" for="real_name">真实名称 * :</label>
+                        <div class="col-md-6 col-sm-6">
+                            <input class="form-control" type="text" id="real_name" name="real_name" value="<?=$data['real_name']?>" data-parsley-type="" placeholder="必填" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4 col-sm-4" for="role_id">用户角色 * :</label>
                         <div class="col-md-4">
-                            <select class="default-select2 form-control" name="p_id">
-                                <?php foreach($menu_list as $m):?>
-                                <option <?php if($pid == $m['id']) {echo "selected";}?> value="<?=$m['id']?>"><?= $m['title']?></option>
+                            <select class="default-select2 form-control" name="role_id">
+                                <option value="">请选择角色</option>
+                                <?php foreach($role_list as $r):?>
+                                <option <?php if($data['role_id'] == $r['id']) {echo "selected";}?> value="<?=$r['id']?>"><?= $r['rolename']?></option>
                                 <?php endforeach;?>
                             </select>
                         </div>
                     </div>
-                    <?php } else {?>
-                    <input type="hidden" name="p_id" value="0">
-                    <?php }?>
                     <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4" for="title">导航名称 * :</label>
-                        <div class="col-md-4 col-sm-4">
-                            <input class="form-control" type="text" id="title" name="title" value="" placeholder="必填" data-parsley-required="true" required/>
-                        </div>
-                    </div>
-                    <?php if($pid != 0) {?>
-                    <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4" for="node_id">挂接节点 * :</label>
-                        <div class="col-md-4">
-                            <select class="default-select2 form-control" name="node_id">
-                                <option value="">请选择节点</option>
-                                <?php foreach($node_list as $n):?>
-                                <option value="<?=$n['id']?>"><?= $n['dirc'] . '/' . $n['cont'] . '/' . $n['func']?></option>
-                                <?php endforeach;?>
-                            </select>
-                        </div>
-                    </div>
-                    <?php } else {?>
-                    <input type="hidden" name="node_id" value="0">
-                    <?php }?>
-                    <div class="form-group">
-                        <label class="control-label col-md-4 col-sm-4" for="sort">排序 * :</label>
-                        <div class="col-md-4 col-sm-4">
-                            <input class="form-control" type="text" id="sort" name="sort" data-parsley-type="" value="0" placeholder="" required/>
+                        <label class="control-label col-md-4 col-sm-4" for="user_desc">用户描述 :</label>
+                        <div class="col-md-6 col-sm-6">
+                            <input class="form-control" type="text" id="user_desc" name="user_desc" value="<?=$data['user_desc']?>" data-parsley-type="" placeholder=""/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-4 col-sm-4">状态 :</label>
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-6 col-sm-6">
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="status" value="1" id="radio-required" checked="checked" data-parsley-required="true" /> 启用
+                                    <input type="radio" name="status" value="1" id="radio-required" <?php if($data['status']==1){echo "checked";}?> data-parsley-required="true" /> 启用
                                 </label>
                             </div>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="status" id="radio-required2" value="0" /> 停用
+                                    <input type="radio" name="status" id="radio-required2" <?php if($data['status']==0){echo "checked";}?>  value="0" /> 停用
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-4 col-sm-4"></label>
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-6 col-sm-6">
+                            <input type="hidden" name="user_id" value="<?=$data['user_id']?>">
                             <button type="submit" class="btn btn-primary">提交</button>
                         </div>
                     </div>

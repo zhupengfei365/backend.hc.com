@@ -66,4 +66,30 @@ class AdminUser extends CI_Model {
         return $userListRet;
     }
     
+    public function addUserToDb($data) {
+        if (empty($data)) {
+            return false;
+        }
+        $this->load->model('backend/dao/AdminUserDao');
+        $result = $this->AdminUserDao->insertUserData($data);
+        return $result;
+    }
+    
+    public function getUserInfo($id) {
+        if (empty($id)) {
+            return FALSE;
+        }
+        $this->load->model('backend/dao/AdminUserDao');
+        $userInfo = $this->AdminUserDao->getUserInfo($id);
+        return $userInfo;
+    }
+    
+    public function editUserInfo($userId, $data) {
+        if (empty($userId) || empty($data)) {
+            return false;
+        }
+        $this->load->model('backend/dao/AdminUserDao');
+        $result = $this->AdminUserDao->editUserInfo($userId, $data);
+        return $result;
+    }
 }

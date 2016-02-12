@@ -12,7 +12,7 @@
             <li><a href="javascript:;" class="bg-black" data-theme="black" data-click="theme-selector" data-toggle="tooltip" data-trigger="hover" data-container="body" data-title="Black">&nbsp;</a></li>
         </ul>
         <div class="divider"></div>
-        <div class="row m-t-10">
+<!--        <div class="row m-t-10">
             <div class="col-md-5 control-label double-line">Header Styling</div>
             <div class="col-md-7">
                 <select name="header-styling" class="form-control input-sm">
@@ -70,7 +70,7 @@
             <div class="col-md-12">
                 <a href="#" class="btn btn-inverse btn-block btn-sm" data-click="reset-local-storage"><i class="fa fa-refresh m-r-3"></i> Reset Local Storage</a>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
 <!-- end theme-panel -->

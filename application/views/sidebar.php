@@ -20,7 +20,7 @@
             <li class="nav-header">Navigation</li>
             <?php foreach ($menu as $k=>$row):?>
             <?php if ($row['is_show'] == 1) {?>
-            <li class="has-sub <?php foreach($row['child'] as $s) { if($this->uri->uri_string == $s['uri']){ echo "active"; break;}}?>">
+            <li class="has-sub <?php foreach($row['child'] as $s) { if($this->uri->uri_string == $s['uri'] || (!empty($_COOKIE['menu_url']) && $_COOKIE['menu_url']==site_url($s['uri']))){ echo "active"; break;}}?>">
                 <a href="javascript:;">
                     <b class="caret pull-right"></b>
                     <i class="fa <?=$row['icon_name']?>"></i>
@@ -28,7 +28,7 @@
                 </a>
                 <ul class="sub-menu">
                     <?php foreach ($row['child'] as $s):?>
-                    <li <?php if($this->uri->uri_string == $s['uri']){ echo "class='active'";} ?>><a href="<?php echo site_url($s['uri']);?>"><?=$s['title']?></a></li>
+                    <li <?php if($this->uri->uri_string == $s['uri'] || (!empty($_COOKIE['menu_url']) && $_COOKIE['menu_url']==site_url($s['uri']))){ echo "class='active'";} ?>><a href="<?php echo site_url($s['uri']);?>" onclick="setMenu(this)"><?=$s['title']?></a></li>
                     <?php endforeach;?>
                 </ul>
             </li>
@@ -44,3 +44,8 @@
 </div>
 <div class="sidebar-bg"></div>
 <!-- end #sidebar -->
+<script type="text/javascript">
+    function setMenu(url) {
+        $.cookie('menu_url', url, {path:"/"});
+    }
+</script>

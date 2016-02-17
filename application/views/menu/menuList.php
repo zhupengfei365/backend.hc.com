@@ -59,6 +59,7 @@
                                         <a href="<?php echo site_url('backend/menu/addMenu') . '/' . $l['id']; ?>" class="btn btn-primary btn-xs m-r-5 fa fa-plus">新增子导航</a>
                                     </td>
                                 </tr>
+                                <?php if (!empty($l['menu_son']) && count($l['menu_son']) > 0) {?>
                                 <?php foreach($l['menu_son'] as $s) :?>
                                 <tr>
                                     <td>&nbsp;&nbsp;&nbsp;&nbsp;<span class="fa fa-chain">&nbsp;</span><?= $s['title'] ?></td>
@@ -81,6 +82,7 @@
                                     </td>
                                 </tr>
                                 <?php endforeach;?>
+                                <?php }?>
                             <?php endforeach; ?>
                         </tbody>
                     </table>

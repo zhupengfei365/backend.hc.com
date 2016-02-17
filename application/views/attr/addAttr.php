@@ -1,7 +1,7 @@
 <!-- begin breadcrumb -->
 <ol class="breadcrumb pull-right">
     <li><a href="javascript:;">首页</a></li>
-    <li><a href="javascript:;">商品管理</a></li>
+    <li><a href="javascript:;">基础设置</a></li>
     <li class="active">新增属性</li>
 </ol>
 <!-- end breadcrumb -->
@@ -32,7 +32,7 @@
                             <input class="form-control" type="text" id="attr_name" name="attr_name" value="" placeholder="必填" data-parsley-required="true" required/>
                         </div>
                     </div>
-                    <div class="form-group">
+<!--                    <div class="form-group">
                         <label class="control-label col-md-4 col-sm-4">是否删除 :</label>
                         <div class="col-md-6 col-sm-6">
                             <div class="radio">
@@ -46,7 +46,7 @@
                                 </label>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="form-group">
                         <label class="control-label col-md-4 col-sm-4">输入类型 :</label>
                         <div class="col-md-6 col-sm-6">
@@ -92,7 +92,7 @@
 <!-- end row -->
 <script type="text/javascript">
     $('#add_attr_btn').click(function(){
-        var input = '<div class="form-inline m-t-5"><input class="form-control" type="text" id="value_name" name="value_name[]" value=""> <a href="javascript:;" id="add_attr_btn" class="btn btn-danger m-r-5 fa fa-times" onclick="delDivDom(this)"></a></div>';
+        var input = '<div class="form-inline m-t-5"><input class="form-control" type="text" id="value_name" name="value_name[]" value="" placeholder="必填" required> <a href="javascript:;" id="add_attr_btn" class="btn btn-danger m-r-5 fa fa-times" onclick="delDivDom(this)"></a></div>';
         $('#attr_value_div').append(input);
     });
     function delDivDom(btn) {

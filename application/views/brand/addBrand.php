@@ -1,7 +1,7 @@
 <!-- begin breadcrumb -->
 <ol class="breadcrumb pull-right">
     <li><a href="javascript:;">首页</a></li>
-    <li><a href="javascript:;">商品管理</a></li>
+    <li><a href="javascript:;">基础设置</a></li>
     <li class="active">新增品牌</li>
 </ol>
 <!-- end breadcrumb -->
@@ -77,7 +77,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+<!--                    <div class="form-group">
                         <label class="control-label col-md-4 col-sm-4">是否删除 :</label>
                         <div class="col-md-6 col-sm-6">
                             <div class="radio">
@@ -91,7 +91,7 @@
                                 </label>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                      <div class="form-group">
                         <label class="control-label col-md-4 col-sm-4" for="sort">排序 * :</label>
                         <div class="col-md-6 col-sm-6">

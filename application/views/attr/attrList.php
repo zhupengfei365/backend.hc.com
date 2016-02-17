@@ -1,7 +1,7 @@
 <!-- begin breadcrumb -->
 <ol class="breadcrumb pull-right">
     <li><a href="javascript:;">首页</a></li>
-    <li><a href="javascript:;">商品管理</a></li>
+    <li><a href="javascript:;">基础设置</a></li>
     <li class="active">属性列表</li>
 </ol>
 <!-- end breadcrumb -->
@@ -34,6 +34,8 @@
                                 <th>属性名</th>
                                 <th>属性值</th>
                                 <th>输入类型</th>
+                                <th>添加时间</th>
+                                <th>修改时间</th>
                                 <th>是否删除</th>
                                 <th>操作</th>
                             </tr>
@@ -45,6 +47,8 @@
                                     <td><?= $row['name'] ?></td>
                                     <td><?= $row['value_name']?></td>
                                     <td><?php if ($row['field_type'] == 1) { echo '单选'; } else if ($row['field_type'] == 2) { echo '多选'; } else {echo '输入';} ?></td>
+                                    <td><?= date('Y-m-d H:i:s', $row['add_time']) ?></td>
+                                    <td><?= date('Y-m-d H:i:s', $row['update_time']) ?></td>
                                     <td><?php if ($row['is_delete'] == 1) {echo '<span class="badge badge-danger">是</span>';} else {echo '<span class="badge badge-success">否</span>';}?></td>
                                     <td>
                                         <a href="<?php echo site_url('backend/attr/editAttr') . '/' . $row['attr_id'];?>" class="btn btn-info btn-xs m-r-5 fa fa-edit">编辑</a>

@@ -1,7 +1,7 @@
 <!-- begin breadcrumb -->
 <ol class="breadcrumb pull-right">
     <li><a href="javascript:;">首页</a></li>
-    <li><a href="javascript:;">商品管理</a></li>
+    <li><a href="javascript:;">基础设置</a></li>
     <li class="active">品牌列表</li>
 </ol>
 <!-- end breadcrumb -->

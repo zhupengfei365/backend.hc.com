@@ -51,6 +51,12 @@
                             <input type="hidden" name="id" value="<?=$data['id']?>">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4 col-sm-4" for="title">导航图标 :</label>
+                        <div class="col-md-4 col-sm-4">
+                            <input class="form-control" type="text" id="icon_name" name="icon_name" value="<?=$data['icon_name']?>" placeholder="" data-parsley-required="true"/>
+                        </div>
+                    </div>
                     <?php if($data['p_id'] != 0) {?>
                     <div class="form-group">
                         <label class="control-label col-md-4 col-sm-4" for="node_id">挂接节点 * :</label>

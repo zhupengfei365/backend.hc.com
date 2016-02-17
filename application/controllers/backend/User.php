@@ -59,6 +59,8 @@ class User extends MY_Controller {
     }
 
     public function logout() {
+        $this->load->helper('cookie');
+        set_cookie('menu_url','',time()-3600);
         $this->session->sess_destroy();
         successRedirct('backend/user/login', "退出成功！");
     }

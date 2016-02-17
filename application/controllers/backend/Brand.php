@@ -30,7 +30,7 @@ class Brand extends MY_Controller {
     public function editBrandDo() {
         $this->form_validation->set_rules('brand_id', 'brand_id', 'required');
         $this->form_validation->set_rules('name', 'name', 'required');
-        $this->form_validation->set_rules('is_delete', 'is_delete', 'required');
+//        $this->form_validation->set_rules('is_delete', 'is_delete', 'required');
         $this->form_validation->set_rules('is_show', 'is_show', 'required');
         
         if ($this->form_validation->run() == FALSE) {
@@ -47,7 +47,7 @@ class Brand extends MY_Controller {
                 'production' => $this->input->post('production'),
                 'is_show' => $this->input->post('is_show'),
                 'sort' => $this->input->post('sort'),
-                'is_delete' => $this->input->post('is_delete'),
+//                'is_delete' => $this->input->post('is_delete'),
                 'update_time' => time(),
             );
 
@@ -68,7 +68,7 @@ class Brand extends MY_Controller {
     
     public function addBrandDo() {
         $this->form_validation->set_rules('name', 'name', 'required');
-        $this->form_validation->set_rules('is_delete', 'is_delete', 'required');
+//        $this->form_validation->set_rules('is_delete', 'is_delete', 'required');
         $this->form_validation->set_rules('is_show', 'is_show', 'required');
         
         if ($this->form_validation->run() == FALSE) {
@@ -84,7 +84,7 @@ class Brand extends MY_Controller {
                 'production' => $this->input->post('production'),
                 'is_show' => $this->input->post('is_show'),
                 'sort' => $this->input->post('sort'),
-                'is_delete' => $this->input->post('is_delete'),
+//                'is_delete' => $this->input->post('is_delete'),
                 'add_time' => time(),
                 'update_time' => time(),
             );

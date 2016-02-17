@@ -51,11 +51,9 @@ class Attr extends MY_Controller {
     }
     
     public function editAttrDo() {
-//        var_dump($this->input->post());exit;
-        
         $this->form_validation->set_rules('attr_id', 'attr_id', 'required');
         $this->form_validation->set_rules('attr_name', 'attr_name', 'required');
-        $this->form_validation->set_rules('is_delete', 'is_delete', 'required');
+//        $this->form_validation->set_rules('is_delete', 'is_delete', 'required');
         $this->form_validation->set_rules('field_type', 'field_type', 'required');
         
         if ($this->form_validation->run() == FALSE) {
@@ -65,7 +63,7 @@ class Attr extends MY_Controller {
             $attrId = $this->input->post('attr_id');
             $data = array(
                 'name' => $this->input->post('attr_name'),
-                'is_delete' => $this->input->post('is_delete'),
+//                'is_delete' => $this->input->post('is_delete'),
                 'field_type' => $this->input->post('field_type'),
                 'update_time' => time(),
             );
@@ -111,7 +109,7 @@ class Attr extends MY_Controller {
     
     public function addAttrDo() {
         $this->form_validation->set_rules('attr_name', 'attr_name', 'required');
-        $this->form_validation->set_rules('is_delete', 'is_delete', 'required');
+//        $this->form_validation->set_rules('is_delete', 'is_delete', 'required');
         $this->form_validation->set_rules('field_type', 'field_type', 'required');
         
         if ($this->form_validation->run() == FALSE) {
@@ -120,7 +118,7 @@ class Attr extends MY_Controller {
         } else {
             $data = array(
                 'name' => $this->input->post('attr_name'),
-                'is_delete' => $this->input->post('is_delete'),
+//                'is_delete' => $this->input->post('is_delete'),
                 'field_type' => $this->input->post('field_type'),
                 'add_time' => time(),
                 'update_time' => time(),

@@ -12,6 +12,7 @@ class AdminMenuDao extends CommonDao {
         'p_id',
         'sort',
         'status',
+        'icon_name',
     );
     protected $primaryKey = 'id';
 

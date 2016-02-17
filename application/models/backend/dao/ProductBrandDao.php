@@ -29,6 +29,7 @@ class ProductBrandDao extends CommonDao {
         $this->getConn();
         $this->commonDb->select('*');
         $this->commonDb->from($this->table);
+        $this->commonDb->where('is_delete', 0);
         $query = $this->commonDb->get();
         if (!$query) {
             // 数据库执行出错，记录日志

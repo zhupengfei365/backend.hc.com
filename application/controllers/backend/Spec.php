@@ -31,123 +31,125 @@ class Spec extends MY_Controller {
         $this->load->view('spec/specList.php', $data);
     }
     
-    public function editAttr() {
+    public function editSpec() {
         $id = $this->uri->segment(4);
         if (empty($id)) {
            errorRedirct('', "ID不能为空");
            die();
         }
-        $this->load->model('backend/productAttr');
-        $info = $this->productAttr->getAttrInfo($id);
+        $this->load->model('backend/productSpec');
+        $info = $this->productSpec->getSpecInfo($id);
         
-        $valueList = $this->productAttr->getAttrValueNameList($id);
+        $valueList = $this->productSpec->getSpecValueNameList($id);
         
         $data = array(
             'info' => $info,
             'value_list' => $valueList,
         );
         
-        $this->load->view('attr/editAttr', $data);
+        $this->load->view('spec/editSpec', $data);
     }
     
-    public function editAttrDo() {
-//        var_dump($this->input->post());exit;
-        
-        $this->form_validation->set_rules('attr_id', 'attr_id', 'required');
-        $this->form_validation->set_rules('attr_name', 'attr_name', 'required');
-        $this->form_validation->set_rules('is_delete', 'is_delete', 'required');
-        $this->form_validation->set_rules('field_type', 'field_type', 'required');
+    public function editSpecDo() {
+        $this->form_validation->set_rules('spec_id', 'spec_id', 'required');
+        $this->form_validation->set_rules('spec_name', 'spec_name', 'required');
+//        $this->form_validation->set_rules('is_delete', 'is_delete', 'required');
+        $this->form_validation->set_rules('remark', 'remark', 'required');
         
         if ($this->form_validation->run() == FALSE) {
             errorRedirct('', '必要参数不能为空');
             die();
         } else {
-            $attrId = $this->input->post('attr_id');
+            $specId = $this->input->post('spec_id');
             $data = array(
-                'name' => $this->input->post('attr_name'),
-                'is_delete' => $this->input->post('is_delete'),
-                'field_type' => $this->input->post('field_type'),
+                'name' => $this->input->post('spec_name'),
+//                'is_delete' => $this->input->post('is_delete'),
+                'remark' => $this->input->post('remark'),
                 'update_time' => time(),
             );
 
-            $this->load->model('backend/productAttr');
-            $result = $this->productAttr->editAttrInfo($attrId, $data);
+            $this->load->model('backend/productSpec');
+            $result = $this->productSpec->editSpecInfo($specId, $data);
             
             if ($result) {
                 if (!empty($this->input->post('value_name'))) {
                     $values = array();
-                    foreach($this->input->post('attr_value_id') as $k=>$v) {
-                        $attrValueId = $v;
+                    foreach($this->input->post('spec_value_id') as $k=>$v) {
+                        $specValueId = $v;
                         $values = array(
                             'name' => $this->input->post('value_name')[$k],
                             'update_time' => time(),
                         );
-                        $this->productAttr->editAttrValueInfo($attrValueId, $values);
+                        $this->productSpec->editSpecValueInfo($specValueId, $values);
                     }
                 }
                     
-                if (!empty($this->input->post('attr_value_name'))) {
-                    foreach($this->input->post('attr_value_name') as $name) {
-                        $newValues[] = array(
-                            'attr_id' => $attrId,
-                            'name' => $name,
-                            'add_time' => time(),
-                            'update_time' => time(),
-                        );
-                        $this->productAttr->insertAttrValuesToDb($newValues);
+                if (!empty($this->input->post('spec_value_name'))) {
+                    foreach($this->input->post('spec_value_name') as $name) {
+                        if (!empty($name)) {
+                            $newValues[] = array(
+                                'spec_id' => $specId,
+                                'name' => $name,
+                                'add_time' => time(),
+                                'update_time' => time(),
+                            );
+                        }
                     }
+                    $this->productSpec->insertSpecValuesToDb($newValues);
                 }
                 
-                successRedirct('backend/attr/attrList', "编辑成功！");
+                successRedirct('backend/spec/specList', "编辑成功！");
             } else {
                 errorRedirct('', "编辑失败！");
             }
         }
     }
 
-    public function addAttr() {
-        $this->load->view('attr/addAttr');
+    public function addSpec() {
+        $this->load->view('spec/addSpec');
     }
     
-    public function addAttrDo() {
-        $this->form_validation->set_rules('attr_name', 'attr_name', 'required');
-        $this->form_validation->set_rules('is_delete', 'is_delete', 'required');
-        $this->form_validation->set_rules('field_type', 'field_type', 'required');
+    public function addSpecDo() {
+        $this->form_validation->set_rules('spec_name', 'spec_name', 'required');
+//        $this->form_validation->set_rules('is_delete', 'is_delete', 'required');
+        $this->form_validation->set_rules('remark', 'remark', 'required');
         
         if ($this->form_validation->run() == FALSE) {
             errorRedirct('', '必要参数不能为空');
             die();
         } else {
             $data = array(
-                'name' => $this->input->post('attr_name'),
-                'is_delete' => $this->input->post('is_delete'),
-                'field_type' => $this->input->post('field_type'),
+                'name' => $this->input->post('spec_name'),
+//                'is_delete' => $this->input->post('is_delete'),
+                'remark' => $this->input->post('remark'),
                 'add_time' => time(),
                 'update_time' => time(),
             );
 
-            $this->load->model('backend/productAttr');
-            $result = $this->productAttr->addAttrToDb($data);
+            $this->load->model('backend/productSpec');
+            $result = $this->productSpec->addSpecToDb($data);
             
             if ($result) {
                 if (!empty($this->input->post('value_name'))) {
                     $values = array();
                     foreach($this->input->post('value_name') as $v) {
-                        $values[] = array(
-                            'attr_id' => $result,
-                            'name' => $v,
-                            'add_time' => time(),
-                            'update_time' => time(),
-                        );
+                        if (!empty($v)) {
+                            $values[] = array(
+                                'spec_id' => $result,
+                                'name' => $v,
+                                'add_time' => time(),
+                                'update_time' => time(),
+                            );
+                        }
                     }
-                    $res = $this->productAttr->insertAttrValuesToDb($values);
+                    $res = $this->productSpec->insertSpecValuesToDb($values);
                     if ($res) {
-                        successRedirct('backend/attr/attrList', "添加成功！");
+                        successRedirct('backend/spec/specList', "添加成功！");
                     } else {
-                        errorRedirct('backend/attr/attrList', "添加失败！");
+                        errorRedirct('backend/spec/specList', "添加失败！");
                     }
                 } else {
-                    successRedirct('backend/attr/attrList', "添加成功！");
+                    successRedirct('backend/spec/specList', "添加成功！");
                 }
             } else {
                 errorRedirct('', "添加失败！");
@@ -155,14 +157,14 @@ class Spec extends MY_Controller {
         }
     }
     
-    public function delAttr() {
+    public function delSpec() {
         $id = $this->uri->segment(4);
         if (empty($id)) {
            errorRedirct('', "ID不能为空");
            die();
         }
-        $this->load->model('backend/productAttr');
-        $result = $this->productAttr->delAttr($id);
+        $this->load->model('backend/productSpec');
+        $result = $this->productSpec->delSpec($id);
         if ($result) {
             successRedirct('', "删除成功！");
         } else {

@@ -9,7 +9,6 @@ class ProductSpecDao extends CommonDao {
         'spec_id',
         'name',
         'remark',
-        'is_img',
         'is_delete',
         'add_time',
         'update_time',
@@ -24,6 +23,7 @@ class ProductSpecDao extends CommonDao {
         $this->getConn();
         $this->commonDb->select('*');
         $this->commonDb->from($this->table);
+        $this->commonDb->where('is_delete', 0);
         $query = $this->commonDb->get();
         if (!$query) {
             // 数据库执行出错，记录日志

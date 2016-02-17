@@ -63,6 +63,7 @@ class Menu extends MY_Controller {
                 'node_id' => $this->input->post('node_id'),
                 'sort' => $this->input->post('sort'),
                 'status' => $this->input->post('status'),
+                'icon_name' => $this->input->post('icon_name'),
             );
 
             $this->load->model('backend/adminMenu');
@@ -113,6 +114,7 @@ class Menu extends MY_Controller {
                 'node_id' => $this->input->post('node_id'),
                 'sort' => $this->input->post('sort'),
                 'status' => $this->input->post('status'),
+                'icon_name' => $this->input->post('icon_name'),
             );
 
             $this->load->model('backend/adminMenu');
